@@ -77,3 +77,56 @@ function log(message: string | number): void {
 }
 
 log("a")
+
+// Interface
+interface UserInterface {
+    readonly id: number,
+    name: string,
+    age?: number
+}
+
+const user1: UserInterface = {
+    id: 1,
+    name: 'Luis'
+}
+
+interface MathFunc {
+    (x: number, y:number): number
+}
+
+const add: MathFunc = (x: number, y:number): number => x + y;
+
+interface PersonInterface {
+    readonly id: number,
+    name: string,
+    
+    register(): string
+}
+
+// Classes
+class Person implements PersonInterface{
+    id: number
+    name: string
+
+    constructor(id: number, name: string) {
+        this.id = id;
+        this.name = name;
+    }
+
+    register() {
+        return this.name + " has been registered";
+    }
+}
+
+const luis = new Person(1, "Luis");
+
+// Generics
+function getArray<T>(items: T[]): T[] {
+    return new Array().concat(items);
+}
+
+let numArray = getArray<number>([1,2,3]);
+let strArray = getArray<string>(["A,B,C"]);
+
+numArray.push(4);
+strArray.push("D");
